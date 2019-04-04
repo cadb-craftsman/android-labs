@@ -3,4 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="third_tab">Third Tab</string>
+    <string name="second_tab">Second Tab</string>
+    <string name="first_tab">First Tab</string>
 </resources>

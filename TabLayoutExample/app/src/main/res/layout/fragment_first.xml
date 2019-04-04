@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="First Tab"
+        android:text="@string/first_tab"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 </RelativeLayout>
