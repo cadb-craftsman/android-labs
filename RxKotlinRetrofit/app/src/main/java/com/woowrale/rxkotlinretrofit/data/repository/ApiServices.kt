@@ -11,7 +11,4 @@ interface ApiServices {
     @GET("{coin}-usd")
     fun getCoinData(@Path("coin") coin: String): Observable<Crypto>
 
-    companion object {
-        val BASE_URL = BuildConfig.BASE_URL
-    }
 }

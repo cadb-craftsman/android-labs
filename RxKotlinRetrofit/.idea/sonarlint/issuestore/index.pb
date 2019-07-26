@@ -7,8 +7,6 @@ P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 ‚
 Rapp/src/main/java/com/woowrale/rxkotlinretrofit/ui/adapters/RecyclerViewAdapter.kt,5/c/5c7fb6326916ee4433b95b488fe240061de82f6c
-}
-Mapp/src/main/java/com/woowrale/rxkotlinretrofit/data/repository/RestClient.kt,c/f/cffffe9d4b86c514d26c20d043060d997cc5287d
 ~
 Napp/src/main/java/com/woowrale/rxkotlinretrofit/data/repository/ApiServices.kt,5/c/5cb6b1c60cd1236f51e47721dd187916c7e04174
 w
@@ -17,7 +15,9 @@ x
 Happ/src/main/java/com/woowrale/rxkotlinretrofit/ui/main/MainPresenter.kt,d/e/de651c42e17da9af3bcddaec41f5db5cbca9512f
 y
 Iapp/src/main/java/com/woowrale/rxkotlinretrofit/data/model/DataClasses.kt,5/a/5a23ba54ce4669bb3f4ee6ee4f204c2c388ca8c0
-w
-Gapp/src/main/java/com/woowrale/rxkotlinretrofit/ui/base/BaseActivity.kt,6/0/608fd746ae54a9aa41486ef4e7d72eebcfbcce04
-x
-Happ/src/main/java/com/woowrale/rxkotlinretrofit/ui/base/BasePresenter.kt,f/9/f9910f8543376e6c7f792fa24b7c8cbac33ca7e8
+r
+Bapp/src/main/java/com/woowrale/rxkotlinretrofit/ui/base/BaseMVP.kt,4/3/4371c68ad636f4804559e30331f1079ab3340ccb
+s
+Capp/src/main/java/com/woowrale/rxkotlinretrofit/ui/main/MainView.kt,d/8/d88a1b7c335fb35d9328f5a7706687c5842d5372
+‚
+Rapp/src/main/java/com/woowrale/rxkotlinretrofit/data/repository/ApiRestServices.kt,c/3/c3663258ce6f52d6a05c75cc15b30a4d92ae2070

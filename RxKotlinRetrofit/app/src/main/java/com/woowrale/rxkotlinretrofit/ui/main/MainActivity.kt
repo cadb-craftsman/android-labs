@@ -12,8 +12,8 @@ import com.woowrale.rxkotlinretrofit.ui.base.BaseActivity
 class MainActivity : BaseActivity(), MainView {
 
     lateinit var recyclerView: RecyclerView
-    lateinit var recyclerViewAdapter: RecyclerViewAdapter
-    lateinit var mPresenter: MainPresenter
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
+    private lateinit var mPresenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
