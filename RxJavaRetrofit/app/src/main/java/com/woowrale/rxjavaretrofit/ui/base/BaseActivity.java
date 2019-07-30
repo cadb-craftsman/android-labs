@@ -1,4 +1,4 @@
-package com.ama.oficinas.ui.base;
+package com.woowrale.rxjavaretrofit.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

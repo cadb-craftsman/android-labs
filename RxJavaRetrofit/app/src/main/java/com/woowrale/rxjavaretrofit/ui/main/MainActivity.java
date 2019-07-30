@@ -1,18 +1,16 @@
 package com.woowrale.rxjavaretrofit.ui.main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.journaldev.rxjavaretrofit.pojo.Crypto;
-
-import java.util.List;
-
+import com.woowrale.rxjavaretrofit.R;
+import com.woowrale.rxjavaretrofit.data.model.Crypto;
+import com.woowrale.rxjavaretrofit.data.repository.CryptocurrencyService;
+import com.woowrale.rxjavaretrofit.ui.adapter.RecyclerViewAdapter;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -21,6 +19,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,9 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResults, this::handleError);
-
-
-
     }
 
 

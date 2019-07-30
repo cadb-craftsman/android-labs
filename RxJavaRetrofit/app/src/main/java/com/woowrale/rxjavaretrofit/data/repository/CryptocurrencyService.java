@@ -1,7 +1,6 @@
-package com.journaldev.rxjavaretrofit;
+package com.woowrale.rxjavaretrofit.data.repository;
 
-import com.journaldev.rxjavaretrofit.pojo.Crypto;
-
+import com.woowrale.rxjavaretrofit.data.model.Crypto;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
