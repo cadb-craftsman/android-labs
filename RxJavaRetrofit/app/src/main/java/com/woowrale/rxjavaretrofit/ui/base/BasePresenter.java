@@ -17,8 +17,8 @@ public abstract class BasePresenter<T extends BasePresenter.View> {
 
     public interface View {
 
-        public void showMessageError();
+        void showMessageError();
 
-        public void showMessageResult();
+        void showMessageResult();
     }
 }
