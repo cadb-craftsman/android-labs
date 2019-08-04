@@ -1,26 +1,27 @@
 package com.woowrale.rxjavaretrofit.ui.main;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.woowrale.rxjavaretrofit.BuildConfig;
 import com.woowrale.rxjavaretrofit.data.model.Crypto;
-import com.woowrale.rxjavaretrofit.data.repository.ApiRestServices;
+import com.woowrale.rxjavaretrofit.data.repository.ApiService;
 import com.woowrale.rxjavaretrofit.ui.base.BasePresenter;
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.List;
 
 public class MainPresenter extends BasePresenter<MainView> {
 
+    private CompositeDisposable compositeDisposable;
+
     public void onSearchCryptoCurrency(){
 
+        compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(ApiService.services().getCoinData("btc")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResults));
+
+        /*
         Observable<List<Crypto.Market>> btcObservable = ApiRestServices.services().getCoinData("btc")
                 .map(result -> Observable.fromIterable(result.ticker.markets))
                 .flatMap(x -> x).filter(y -> {
@@ -39,12 +40,15 @@ public class MainPresenter extends BasePresenter<MainView> {
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResults, this::handleError);
+         */
     }
 
 
-    private void handleResults(List<Crypto.Market> marketList) {
-        if (marketList != null && marketList.size() != 0) {
-            getView().showListView(marketList);
+    private void handleResults(Crypto crypto) {
+        if (crypto != null) {
+            if(crypto.ticker.markets != null){
+                getView().showListView(crypto.ticker.markets);
+            }
         } else {
             getView().showMessageResult();
         }
