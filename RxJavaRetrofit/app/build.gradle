@@ -23,7 +23,7 @@ android {
 
     flavorDimensions "development", "test"
     productFlavors {
-        main {
+        prod {
             buildConfigField 'String', 'BASE_URL', project.BASE_URL
             dimension "development"
         }
