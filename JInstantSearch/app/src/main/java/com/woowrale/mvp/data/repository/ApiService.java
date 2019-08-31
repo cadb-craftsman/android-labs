@@ -1,6 +1,6 @@
-package com.woowrale.architecture.mvp.data.repository;
+package com.woowrale.mvp.data.repository;
 
-import com.woowrale.architecture.mvp.data.model.Contact;
+import com.woowrale.mvp.data.model.Contact;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

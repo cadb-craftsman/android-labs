@@ -1,4 +1,4 @@
-package com.woowrale.architecture.mvp.ui.search.home;
+package com.woowrale.mvp.ui.search.home;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.woowrale.architecture.mvp.R;
-import com.woowrale.architecture.mvp.ui.base.BaseActivity;
-import com.woowrale.architecture.mvp.ui.search.local.LocalSearchActivity;
-import com.woowrale.architecture.mvp.ui.search.remote.RemoteSearchActivity;
+import com.woowrale.mvp.R;
+import com.woowrale.mvp.ui.base.BaseActivity;
+import com.woowrale.mvp.ui.search.local.LocalSearchActivity;
+import com.woowrale.mvp.ui.search.remote.RemoteSearchActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

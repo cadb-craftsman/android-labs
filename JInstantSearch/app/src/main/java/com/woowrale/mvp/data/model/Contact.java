@@ -1,4 +1,4 @@
-package com.woowrale.architecture.mvp.data.model;
+package com.woowrale.mvp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 

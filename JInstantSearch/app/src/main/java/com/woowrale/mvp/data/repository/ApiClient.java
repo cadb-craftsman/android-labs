@@ -1,7 +1,7 @@
-package com.woowrale.architecture.mvp.data.repository;
+package com.woowrale.mvp.data.repository;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.woowrale.architecture.mvp.BuildConfig;
+import com.woowrale.mvp.BuildConfig;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

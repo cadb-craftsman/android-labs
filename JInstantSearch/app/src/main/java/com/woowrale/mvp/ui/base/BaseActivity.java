@@ -1,8 +1,8 @@
-package com.woowrale.architecture.mvp.ui.base;
+package com.woowrale.mvp.ui.base;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.woowrale.architecture.mvp.data.repository.ApiClient;
+import com.woowrale.mvp.data.repository.ApiClient;
 
 import retrofit2.Retrofit;
 

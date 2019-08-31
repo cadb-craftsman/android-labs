@@ -1,4 +1,4 @@
-package com.woowrale.architecture.mvp.ui.search.local;
+package com.woowrale.mvp.ui.search.remote;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -13,10 +13,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.widget.RxTextView;
-import com.woowrale.architecture.mvp.R;
-import com.woowrale.architecture.mvp.data.model.Contact;
-import com.woowrale.architecture.mvp.ui.adapters.ContactsAdapterFilterable;
-import com.woowrale.architecture.mvp.ui.base.BaseActivity;
+import com.woowrale.mvp.BuildConfig;
+import com.woowrale.mvp.R;
+import com.woowrale.mvp.data.model.Contact;
+import com.woowrale.mvp.ui.adapters.ContactsAdapter;
+import com.woowrale.mvp.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +26,15 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Function;
+import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 
-public class LocalSearchActivity extends BaseActivity implements ContactsAdapterFilterable.ContactsAdapterListener, LocalSearchView {
+public class RemoteSearchActivity extends BaseActivity implements ContactsAdapter.ContactsAdapterListener, RemoteSearchView {
 
     @BindView(R.id.input_search)
     EditText inputSearch;
@@ -41,23 +46,24 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
     Toolbar toolbar;
 
     private Unbinder unbinder;
-    private LocalSearchPresenter presenter;
-    private ContactsAdapterFilterable mAdapter;
+    private ContactsAdapter mAdapter;
+    private RemoteSearchPresenter presenter;
     private List<Contact> contactsList = new ArrayList<>();
     private CompositeDisposable disposable = new CompositeDisposable();
+    private PublishSubject<String> publishSubject = PublishSubject.create();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_local_search);
+        setContentView(R.layout.activity_remote_search);
         unbinder = ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        presenter = new LocalSearchPresenter(this, getRetrofit());
+        presenter = new RemoteSearchPresenter(this, getRetrofit());
 
-        mAdapter = new ContactsAdapterFilterable(this, contactsList, this);
+        mAdapter = new ContactsAdapter(this, contactsList, this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -67,24 +73,36 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
 
         whiteNotificationBar(recyclerView);
 
-        disposable.add(RxTextView.textChangeEvents(inputSearch)
-                .skipInitialValue()
-                .debounce(300, TimeUnit.MILLISECONDS)
-                /*.filter(new Predicate<TextViewTextChangeEvent>() {
-                    @Override
-                    public boolean test(TextViewTextChangeEvent textViewTextChangeEvent) throws Exception {
-                        return TextUtils.isEmpty(textViewTextChangeEvent.text().toString()) || textViewTextChangeEvent.text().toString().length() > 2;
-                    }
-                })*/
-                .distinctUntilChanged()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(presenter.searchContacts()));
+        DisposableObserver<List<Contact>> observer = presenter.getSearchObserver();
 
-        // source: `gmail` or `linkedin`
-        // fetching all contacts on app launch
-        // only gmail will be fetched
-        presenter.fetchContacts("gmail");
+        disposable.add(
+                publishSubject
+                        .debounce(300, TimeUnit.MILLISECONDS)
+                        .distinctUntilChanged()
+                        .switchMapSingle(new Function<String, Single<List<Contact>>>() {
+                            @Override
+                            public Single<List<Contact>> apply(String s) throws Exception {
+                                return presenter.getApiService().getContacts(BuildConfig.GET_CONTACTS,null, s)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread());
+                            }
+                        })
+                        .subscribeWith(observer));
+
+
+        // skipInitialValue() - skip for the first time when EditText empty
+        disposable.add(
+                RxTextView.textChangeEvents(inputSearch)
+                        .skipInitialValue()
+                        .debounce(300, TimeUnit.MILLISECONDS)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(presenter.searchContactsTextWatcher()));
+
+        disposable.add(observer);
+
+        // passing empty string fetches all the contacts
+        publishSubject.onNext("");
     }
 
     @Override
@@ -117,18 +135,19 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public CompositeDisposable getDisposable() {
-        return disposable;
-    }
 
     @Override
-    public ContactsAdapterFilterable getmAdapter() {
+    public ContactsAdapter getmAdapter() {
         return mAdapter;
     }
 
     @Override
     public List<Contact> getContactsList() {
         return contactsList;
+    }
+
+    @Override
+    public PublishSubject<String> getPublishSubject() {
+        return publishSubject;
     }
 }

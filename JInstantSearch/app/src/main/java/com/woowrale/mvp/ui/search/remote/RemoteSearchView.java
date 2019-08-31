@@ -1,8 +1,8 @@
-package com.woowrale.architecture.mvp.ui.search.remote;
+package com.woowrale.mvp.ui.search.remote;
 
-import com.woowrale.architecture.mvp.data.model.Contact;
-import com.woowrale.architecture.mvp.ui.adapters.ContactsAdapter;
-import com.woowrale.architecture.mvp.ui.base.BasePresenter;
+import com.woowrale.mvp.data.model.Contact;
+import com.woowrale.mvp.ui.adapters.ContactsAdapter;
+import com.woowrale.mvp.ui.base.BasePresenter;
 
 import java.util.List;
 

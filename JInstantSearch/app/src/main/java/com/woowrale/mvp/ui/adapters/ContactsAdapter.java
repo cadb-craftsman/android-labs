@@ -1,4 +1,4 @@
-package com.woowrale.architecture.mvp.ui.adapters;
+package com.woowrale.mvp.ui.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.woowrale.architecture.mvp.R;
-import com.woowrale.architecture.mvp.data.model.Contact;
+import com.woowrale.mvp.R;
+import com.woowrale.mvp.data.model.Contact;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
-package com.woowrale.architecture.mvp.ui.search.local;
+package com.woowrale.mvp.ui.search.local;
 
 import android.util.Log;
 
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
-import com.woowrale.architecture.mvp.BuildConfig;
-import com.woowrale.architecture.mvp.data.model.Contact;
-import com.woowrale.architecture.mvp.data.repository.ApiService;
-import com.woowrale.architecture.mvp.ui.base.BasePresenter;
+import com.woowrale.mvp.BuildConfig;
+import com.woowrale.mvp.data.model.Contact;
+import com.woowrale.mvp.data.repository.ApiService;
+import com.woowrale.mvp.ui.base.BasePresenter;
 
 import java.util.List;
 

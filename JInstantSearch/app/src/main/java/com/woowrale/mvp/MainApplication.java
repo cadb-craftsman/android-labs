@@ -1,4 +1,4 @@
-package com.woowrale.architecture.mvp;
+package com.woowrale.mvp;
 
 import android.app.Application;
 

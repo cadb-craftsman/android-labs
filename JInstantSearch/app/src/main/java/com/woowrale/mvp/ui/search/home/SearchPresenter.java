@@ -1,6 +1,6 @@
-package com.woowrale.architecture.mvp.ui.search.home;
+package com.woowrale.mvp.ui.search.home;
 
-import com.woowrale.architecture.mvp.ui.base.BasePresenter;
+import com.woowrale.mvp.ui.base.BasePresenter;
 
 public class SearchPresenter extends BasePresenter<SearchView> {
 

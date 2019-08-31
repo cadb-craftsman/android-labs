@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.woowrale.architecture.mvp">
+    package="com.woowrale.mvp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.woowrale.architecture.mvp.MainApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.woowrale.architecture.mvp.ui.search.home.SearchActivity">
+        <activity android:name=".ui.search.home.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,12 +20,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.woowrale.architecture.mvp.ui.search.local.LocalSearchActivity"
+            android:name=".ui.search.local.LocalSearchActivity"
             android:label="@string/activity_local_search"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.woowrale.architecture.mvp.ui.search.remote.RemoteSearchActivity"
+            android:name=".ui.search.remote.RemoteSearchActivity"
             android:label="@string/activity_remote_search"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar" />
