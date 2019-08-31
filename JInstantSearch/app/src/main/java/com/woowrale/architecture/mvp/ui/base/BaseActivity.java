@@ -6,11 +6,10 @@ import com.woowrale.architecture.mvp.data.repository.ApiClient;
 
 import retrofit2.Retrofit;
 
-public class BaseActivity extends AppCompatActivity implements IView {
+public class BaseActivity extends AppCompatActivity implements BasePresenter.View {
 
     private static ApiClient apiClient = new ApiClient();
 
-    @Override
     public Retrofit getRetrofit(){
         return apiClient.getClient();
     }

@@ -1,8 +1,8 @@
 package com.woowrale.architecture.mvp.ui.search.home;
 
-import com.woowrale.architecture.mvp.ui.base.IView;
+import com.woowrale.architecture.mvp.ui.base.BasePresenter;
 
-public interface SearchView extends IView {
+public interface SearchView extends BasePresenter.View {
 
     void navigateToSearchLocal();
 
