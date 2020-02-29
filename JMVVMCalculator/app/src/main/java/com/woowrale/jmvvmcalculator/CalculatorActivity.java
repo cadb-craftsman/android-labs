@@ -52,61 +52,61 @@ public class CalculatorActivity extends AppCompatActivity {
 
         btnZero = findViewById(R.id.btnZero);
         btnZero.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_zero);;
+            editResult += getString(R.string.text_zero);;
             editTextResult.setText(editResult);
         });
 
         btnOne = findViewById(R.id.btnOne);
         btnOne.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_one);
+            editResult +=  getString(R.string.text_one);
             editTextResult.setText(editResult);
         });
 
         btnTwo = findViewById(R.id.btnTwo);
         btnTwo.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_two);
+            editResult +=  getString(R.string.text_two);
             editTextResult.setText(editResult);
         });
 
         btnThree = findViewById(R.id.btnThree);
         btnThree.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_three);
+            editResult += getString(R.string.text_three);
             editTextResult.setText(editResult);
         });
 
         btnFour = findViewById(R.id.btnFour);
         btnFour.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_four);
+            editResult += getString(R.string.text_four);
             editTextResult.setText(editResult);
         });
 
         btnFive = findViewById(R.id.btnFive);
         btnFive.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_five);
+            editResult += getString(R.string.text_five);
             editTextResult.setText(editResult);
         });
 
         btnSix = findViewById(R.id.btnSix);
         btnSix.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_six);
+            editResult += getString(R.string.text_six);
             editTextResult.setText(editResult);
         });
 
         btnSeven = findViewById(R.id.btnSeven);
         btnSeven.setOnClickListener((v) -> {
-            editResult = editResult+ getString(R.string.text_seven);
+            editResult += getString(R.string.text_seven);
             editTextResult.setText(editResult);
         });
 
         btnEigth = findViewById(R.id.btnEigth);
         btnEigth.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_eight);
+            editResult += getString(R.string.text_eight);
             editTextResult.setText(editResult);
         });
 
         btnNine = findViewById(R.id.btnNine);
         btnNine.setOnClickListener((v) -> {
-            editResult = editResult + getString(R.string.text_nine);
+            editResult += getString(R.string.text_nine);
             editTextResult.setText(editResult);
         });
 
