@@ -2,7 +2,7 @@ package com.woowrale.instantsearch.japp.ui.base;
 
 import android.support.v7.app.AppCompatActivity;
 
-import com.woowrale.mvp.data.repository.ApiClient;
+import com.woowrale.instantsearch.japp.data.repository.ApiClient;
 
 import retrofit2.Retrofit;
 

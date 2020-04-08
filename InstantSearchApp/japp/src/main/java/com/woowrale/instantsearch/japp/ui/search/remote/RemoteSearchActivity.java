@@ -13,11 +13,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.jakewharton.rxbinding2.widget.RxTextView;
-import com.woowrale.mvp.BuildConfig;
-import com.woowrale.mvp.R;
-import com.woowrale.mvp.data.model.Contact;
-import com.woowrale.mvp.ui.adapters.ContactsAdapter;
-import com.woowrale.mvp.ui.base.BaseActivity;
+import com.woowrale.instantsearch.japp.BuildConfig;
+import com.woowrale.instantsearch.japp.R;
+import com.woowrale.instantsearch.japp.data.model.Contact;
+import com.woowrale.instantsearch.japp.ui.adapters.ContactsAdapter;
+import com.woowrale.instantsearch.japp.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

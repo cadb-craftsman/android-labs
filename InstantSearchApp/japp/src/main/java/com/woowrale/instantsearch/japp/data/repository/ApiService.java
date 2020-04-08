@@ -2,12 +2,12 @@ package com.woowrale.instantsearch.japp.data.repository;
 
 import com.woowrale.instantsearch.japp.data.model.Contact;
 
+import java.util.List;
+
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
-
-import java.util.List;
 
 public interface ApiService {
 

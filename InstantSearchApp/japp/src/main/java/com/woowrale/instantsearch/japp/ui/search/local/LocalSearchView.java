@@ -1,8 +1,8 @@
 package com.woowrale.instantsearch.japp.ui.search.local;
 
-import com.woowrale.mvp.data.model.Contact;
-import com.woowrale.mvp.ui.adapters.ContactsAdapterFilterable;
-import com.woowrale.mvp.ui.base.BasePresenter;
+import com.woowrale.instantsearch.japp.data.model.Contact;
+import com.woowrale.instantsearch.japp.ui.adapters.ContactsAdapterFilterable;
+import com.woowrale.instantsearch.japp.ui.base.BasePresenter;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.woowrale.instantsearch.japp.ui.search.home;
 
-import com.woowrale.mvp.ui.base.BasePresenter;
+import com.woowrale.instantsearch.japp.ui.base.BasePresenter;
 
 public interface SearchView extends BasePresenter.View {
 

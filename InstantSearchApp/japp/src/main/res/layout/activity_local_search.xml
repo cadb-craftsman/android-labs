@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.woowrale.mvp.ui.search.home.SearchActivity">
+    tools:context="com.woowrale.instantsearch.japp.ui.search.home.SearchActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

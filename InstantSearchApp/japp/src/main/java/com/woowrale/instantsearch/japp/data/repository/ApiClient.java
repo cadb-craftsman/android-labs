@@ -1,7 +1,7 @@
 package com.woowrale.instantsearch.japp.data.repository;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-
+import com.woowrale.instantsearch.japp.BuildConfig;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;

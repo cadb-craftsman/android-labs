@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.woowrale.mvp.R;
-import com.woowrale.mvp.ui.base.BaseActivity;
-import com.woowrale.mvp.ui.search.local.LocalSearchActivity;
-import com.woowrale.mvp.ui.search.remote.RemoteSearchActivity;
+import com.woowrale.instantsearch.japp.R;
+import com.woowrale.instantsearch.japp.ui.base.BaseActivity;
+import com.woowrale.instantsearch.japp.ui.search.local.LocalSearchActivity;
+import com.woowrale.instantsearch.japp.ui.search.remote.RemoteSearchActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
