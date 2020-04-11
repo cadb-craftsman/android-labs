@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">JCalculator</string>
+    <string name="text_equals">=</string>
+    <string name="text_point">.</string>
+    <string name="text_zero">0</string>
+    <string name="text_plus_less">+/-</string>
+    <string name="text_plus">+</string>
+    <string name="text_three">3</string>
+    <string name="text_two">2</string>
+    <string name="text_one">1</string>
+    <string name="text_minus">-</string>
+    <string name="text_six">6</string>
+    <string name="text_five">5</string>
+    <string name="text_four">4</string>
+    <string name="text_multiply">*</string>
+    <string name="text_nine">9</string>
+    <string name="text_eight">8</string>
+    <string name="text_seven">7</string>
+    <string name="text_division">/</string>
+    <string name="text_square">#</string>
+    <string name="text_memory">M</string>
+    <string name="text_percent">%</string>
+</resources>

@@ -1,0 +1,7 @@
+#Sat Apr 11 18:30:05 CEST 2020
+base.0=C\:\\Development\\repositories\\github\\android-labs\\AndroidPatternsApp\\jmvp-app\\build\\intermediates\\dex\\devDebug\\mergeExtDexDevDebug\\out\\classes.dex
+path.1=classes.dex
+renamed.1=classes2.dex
+path.0=classes.dex
+renamed.0=classes.dex
+base.1=C\:\\Development\\repositories\\github\\android-labs\\AndroidPatternsApp\\jmvp-app\\build\\intermediates\\dex\\devDebug\\mergeProjectDexDevDebug\\out\\classes.dex

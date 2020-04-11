@@ -1,0 +1,7 @@
+
+C
+java:S1172#"(Remove this unused method parameter "t".(³½Ìùÿÿÿÿ
+K
+java:S1144#"0Remove this unused private "handleError" method.(³½Ìùÿÿÿÿ
+x
+java:S1450"bRemove the "compositeDisposable" field and declare it as a local variable in the relevant methods.(á™µæ

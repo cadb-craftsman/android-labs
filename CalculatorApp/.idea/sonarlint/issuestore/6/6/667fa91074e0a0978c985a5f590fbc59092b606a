@@ -1,0 +1,71 @@
+
+p
+java:S1450"ZRemove the "btnDivision" field and declare it as a local variable in the relevant methods.(¼„Ûò
+r
+java:S1450"WRemove the "btnEigth" field and declare it as a local variable in the relevant methods.(¶³Ìåıÿÿÿÿ
+n
+java:S1450"XRemove the "btnEquals" field and declare it as a local variable in the relevant methods.(Î²¼×
+l
+java:S1450"VRemove the "btnFive" field and declare it as a local variable in the relevant methods.(«¿éÙ
+l
+java:S1450"VRemove the "btnFour" field and declare it as a local variable in the relevant methods.(âÀŒ™
+m
+java:S1450"WRemove the "btnMinus" field and declare it as a local variable in the relevant methods.(¹ã²
+u
+java:S1450"ZRemove the "btnMultiply" field and declare it as a local variable in the relevant methods.(‹¹•æûÿÿÿÿ
+q
+java:S1450"VRemove the "btnNine" field and declare it as a local variable in the relevant methods.(²âÏµüÿÿÿÿ
+p
+java:S1450"URemove the "btnOne" field and declare it as a local variable in the relevant methods.(š æûÿÿÿÿ
+q
+java:S1450"VRemove the "btnPlus" field and declare it as a local variable in the relevant methods.(ğ–÷ìúÿÿÿÿ
+m
+java:S1450"WRemove the "btnSeven" field and declare it as a local variable in the relevant methods.(Š·ÿõ
+p
+java:S1450"URemove the "btnSix" field and declare it as a local variable in the relevant methods.(´–ƒøúÿÿÿÿ
+r
+java:S1450"WRemove the "btnThree" field and declare it as a local variable in the relevant methods.(¤Åºûÿÿÿÿ
+p
+java:S1450"URemove the "btnTwo" field and declare it as a local variable in the relevant methods.(÷®ªĞÿÿÿÿÿ
+l
+java:S1450"VRemove the "btnZero" field and declare it as a local variable in the relevant methods.(ğ¿öÜ
+o
+java:S1450""YRemove the "editResult" field and declare it as a local variable in the relevant methods.(®‡¸û
+P
+java:S18742":Remove this use of "ViewModelProviders"; it is deprecated.(®ÃÕ‘
+@
+java:S18742"*Remove this use of "of"; it is deprecated.(®ÃÕ‘
+J
+java:S16116"/Remove the parentheses around the "v" parameter(Šß¿†şÿÿÿÿ
+E
+java:S1611<"/Remove the parentheses around the "v" parameter(áÁØ¿
+E
+java:S1611B"/Remove the parentheses around the "v" parameter(ëëóÓ
+E
+java:S1611H"/Remove the parentheses around the "v" parameter(Ş‡˜¿
+E
+java:S1611N"/Remove the parentheses around the "v" parameter(ÙŸÁè
+D
+java:S1611T"/Remove the parentheses around the "v" parameter(’Ê|
+J
+java:S1611Z"/Remove the parentheses around the "v" parameter(üÀ§½şÿÿÿÿ
+D
+java:S1611`"/Remove the parentheses around the "v" parameter(Êò¢
+J
+java:S1611f"/Remove the parentheses around the "v" parameter(ÄšÌçüÿÿÿÿ
+E
+java:S1611l"/Remove the parentheses around the "v" parameter(°«¿
+E
+java:S1611r"/Remove the parentheses around the "v" parameter(øõ‘ô
+J
+java:S1611y"/Remove the parentheses around the "v" parameter(áÉâ›ûÿÿÿÿ
+F
+java:S1611€"/Remove the parentheses around the "v" parameter(ÇÅ„œ
+F
+java:S1611‡"/Remove the parentheses around the "v" parameter(û‘¿À
+F
+java:S1611"/Remove the parentheses around the "v" parameter(ú„à
+P
+java:S1611”"4Remove the parentheses around the "result" parameter(•±íÊûÿÿÿÿ
+H
+java:S1602”",Remove useless curly braces around statement(•±íÊûÿÿÿÿ
