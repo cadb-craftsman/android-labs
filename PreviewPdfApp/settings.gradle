@@ -1,0 +1,3 @@
+rootProject.name='PreviewPdfApp'
+include ':japp'
+include ':kapp'

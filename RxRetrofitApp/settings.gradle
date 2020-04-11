@@ -1,0 +1,4 @@
+rootProject.name='RxRetrofitApp'
+include ':japp'
+include ':kapp'
+include ':kapp'

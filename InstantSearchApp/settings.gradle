@@ -1,0 +1,3 @@
+rootProject.name='InstantSearchApp'
+include ':japp'
+include ':kapp'
