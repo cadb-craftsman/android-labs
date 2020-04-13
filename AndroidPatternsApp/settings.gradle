@@ -1,5 +1,3 @@
 rootProject.name='AndroidPatternsApp'
 include ':jmvp-app'
 include ':kmvp-app'
-include ':jmvvm-app'
-include ':kmvvm-app'

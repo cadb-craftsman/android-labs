@@ -1,0 +1,5 @@
+rootProject.name='AndroidXPatternsApp'
+include ':jmvvm-app'
+include ':kmvvm-app'
+include ':jmvp-app'
+include ':kmvp-app'

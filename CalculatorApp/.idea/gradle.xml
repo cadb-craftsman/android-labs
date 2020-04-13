@@ -10,8 +10,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/japp" />
-            <option value="$PROJECT_DIR$/kapp" />
+            <option value="$PROJECT_DIR$/jmvvm-app" />
+            <option value="$PROJECT_DIR$/kmvvm-app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

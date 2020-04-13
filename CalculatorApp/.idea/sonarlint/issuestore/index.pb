@@ -53,3 +53,15 @@ A
 kapp/build.gradle,a\c\acfbea2d6a956c25cf189c8d8c6b105acdde9c2d
 G
 kapp/proguard-rules.pro,4\2\4203db2ad02b90db3f389d93ca248ccbefa9932d
+|
+Ljmvvm-app/src/main/java/com/woowrale/calculator/japp/CalculatorActivity.java,2\5\252f6060a516535bad011470ad3d7484db8e1ec7
+‚
+Rjmvvm-app/src/main/java/com/woowrale/calculator/japp/mvvm/CalculatorViewModel.java,d\9\d939de85e2931b2744bf388094d65875acadbff7
+?
+settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
+@
+local.properties,0\7\0712df971a99ac4d2fccb8e0fb19f377f3374cca
+A
+gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
+F
+jmvvm-app/build.gradle,d\8\d8e99c23778cdba76907f275fd746ddc47fa0ea4
