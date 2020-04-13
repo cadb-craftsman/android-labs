@@ -2,37 +2,42 @@ package com.woowrale.jmvvm.ui.search.remote;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 import com.woowrale.jmvvm.data.model.Contact;
 import com.woowrale.jmvvm.data.repository.ApiService;
-import com.woowrale.jmvvm.ui.base.BasePresenter;
+import com.woowrale.jmvvm.ui.adapters.ContactsAdapter;
 
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.subjects.PublishSubject;
 
-@Singleton
-public class RemoteSearchPresenter extends BasePresenter<RemoteSearchView> {
-
-    private static final String TAG = RemoteSearchPresenter.class.getSimpleName();
+public class RemoteSearchViewModel extends ViewModel {
+    private static final String TAG = RemoteSearchViewModel.class.getSimpleName();
 
     private ApiService apiService;
 
+    private MutableLiveData<DisposableObserver<List<Contact>>> searchObserver;
+
     @Inject
-    public RemoteSearchPresenter(ApiService apiService){
+    public RemoteSearchViewModel(ApiService apiService){
         this.apiService = apiService;
+        searchObserver = new MutableLiveData<DisposableObserver<List<Contact>>>();
     }
 
-    public DisposableObserver<List<Contact>> getSearchObserver() {
-        return new DisposableObserver<List<Contact>>() {
+    public LiveData<DisposableObserver<List<Contact>>> searchContacts(List<Contact> contactList,  ContactsAdapter mAdapter) {
+        searchObserver.setValue(new DisposableObserver<List<Contact>>() {
             @Override
             public void onNext(List<Contact> contacts) {
-                getView().getContactsList().clear();
-                getView().getContactsList().addAll(contacts);
-                getView().getmAdapter().notifyDataSetChanged();
+                contactList.clear();
+                contactList.addAll(contacts);
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -44,15 +49,16 @@ public class RemoteSearchPresenter extends BasePresenter<RemoteSearchView> {
             public void onComplete() {
 
             }
-        };
+        });
+        return searchObserver;
     }
 
-    public DisposableObserver<TextViewTextChangeEvent> searchContactsTextWatcher() {
+    public DisposableObserver<TextViewTextChangeEvent> searchContactsTextWatcher(PublishSubject<String> publishSubject) {
         return new DisposableObserver<TextViewTextChangeEvent>() {
             @Override
             public void onNext(TextViewTextChangeEvent textViewTextChangeEvent) {
                 Log.d(TAG, "Search query: " + textViewTextChangeEvent.text());
-                getView().getPublishSubject().onNext(textViewTextChangeEvent.text().toString());
+                publishSubject.onNext(textViewTextChangeEvent.text().toString());
             }
 
             @Override

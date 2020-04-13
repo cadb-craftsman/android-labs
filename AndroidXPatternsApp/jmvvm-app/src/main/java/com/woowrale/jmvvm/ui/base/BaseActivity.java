@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.woowrale.jmvvm.MainApplication;
 import com.woowrale.jmvvm.di.components.MainComponent;
 
-public abstract class BaseActivity extends AppCompatActivity implements BasePresenter.View {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

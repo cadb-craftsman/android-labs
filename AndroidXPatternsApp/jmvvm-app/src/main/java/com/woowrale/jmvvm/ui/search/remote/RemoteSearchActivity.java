@@ -37,7 +37,7 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 
-public class RemoteSearchActivity extends BaseActivity implements ContactsAdapter.ContactsAdapterListener, RemoteSearchView {
+public class RemoteSearchActivity extends BaseActivity implements ContactsAdapter.ContactsAdapterListener {
 
     @BindView(R.id.input_search)
     EditText inputSearch;
@@ -49,7 +49,7 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
     Toolbar toolbar;
 
     @Inject
-    RemoteSearchPresenter mPresenter;
+    RemoteSearchViewModel model;
 
     private Unbinder unbinder;
     private ContactsAdapter mAdapter;
@@ -69,8 +69,6 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mPresenter.setView(this);
-
         mAdapter = new ContactsAdapter(this, contactsList, this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -81,7 +79,7 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
 
         whiteNotificationBar(recyclerView);
 
-        DisposableObserver<List<Contact>> observer = mPresenter.getSearchObserver();
+        DisposableObserver<List<Contact>> observer = model.searchContacts(contactsList, mAdapter).getValue();
 
         disposable.add(
                 publishSubject
@@ -90,7 +88,7 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
                         .switchMapSingle(new Function<String, Single<List<Contact>>>() {
                             @Override
                             public Single<List<Contact>> apply(String s) throws Exception {
-                                return mPresenter.getApiService().getContacts(BuildConfig.GET_CONTACTS,null, s)
+                                return model.getApiService().getContacts(BuildConfig.GET_CONTACTS,null, s)
                                         .subscribeOn(Schedulers.io())
                                         .observeOn(AndroidSchedulers.mainThread());
                             }
@@ -105,7 +103,7 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
                         .debounce(300, TimeUnit.MILLISECONDS)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(mPresenter.searchContactsTextWatcher()));
+                        .subscribeWith(model.searchContactsTextWatcher(publishSubject)));
 
         disposable.add(observer);
 
@@ -147,19 +145,4 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
         return super.onOptionsItemSelected(item);
     }
 
-
-    @Override
-    public ContactsAdapter getmAdapter() {
-        return mAdapter;
-    }
-
-    @Override
-    public List<Contact> getContactsList() {
-        return contactsList;
-    }
-
-    @Override
-    public PublishSubject<String> getPublishSubject() {
-        return publishSubject;
-    }
 }

@@ -32,7 +32,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class LocalSearchActivity extends BaseActivity implements ContactsAdapterFilterable.ContactsAdapterListener, LocalSearchView {
+public class LocalSearchActivity extends BaseActivity implements ContactsAdapterFilterable.ContactsAdapterListener {
 
     @BindView(R.id.input_search)
     EditText inputSearch;
@@ -44,7 +44,7 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
     Toolbar toolbar;
 
     @Inject
-    LocalSearchPresenter mPresenter;
+    LocalSearchViewModel model;
 
     private Unbinder unbinder;
     private ContactsAdapterFilterable mAdapter;
@@ -61,7 +61,6 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mPresenter.setView(this);
 
         mAdapter = new ContactsAdapterFilterable(this, contactsList, this);
 
@@ -85,12 +84,12 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
                 .distinctUntilChanged()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(mPresenter.searchContacts()));
+                .subscribeWith(model.searchContacts(mAdapter).getValue()));
 
         // source: `gmail` or `linkedin`
         // fetching all contacts on app launch
         // only gmail will be fetched
-        mPresenter.fetchContacts("gmail");
+        model.fetchContacts(disposable, "gmail", contactsList, mAdapter);
     }
 
     protected void initDagger() {
@@ -127,18 +126,4 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public CompositeDisposable getDisposable() {
-        return disposable;
-    }
-
-    @Override
-    public ContactsAdapterFilterable getmAdapter() {
-        return mAdapter;
-    }
-
-    @Override
-    public List<Contact> getContactsList() {
-        return contactsList;
-    }
 }

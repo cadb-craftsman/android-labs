@@ -11,7 +11,6 @@ import com.woowrale.jmvvm.R;
 import com.woowrale.jmvvm.ui.base.BaseActivity;
 import com.woowrale.jmvvm.ui.search.local.LocalSearchActivity;
 import com.woowrale.jmvvm.ui.search.remote.RemoteSearchActivity;
-import com.woowrale.jmvvm.utils.AppConstants;
 
 import javax.inject.Inject;
 
@@ -45,12 +44,12 @@ public class SearchActivity extends BaseActivity {
 
     @OnClick(R.id.btn_local_search)
     public void openLocalSearch() {
-        startActivity(model.getNavigaion(this, LocalSearchActivity.class).getValue());
+        startActivity(model.navigationTo(this, LocalSearchActivity.class).getValue());
     }
 
     @OnClick(R.id.btn_remote_search)
     public void openRemoteSearch() {
-        startActivity(model.getNavigaion(this, RemoteSearchActivity.class).getValue());
+        startActivity(model.navigationTo(this, RemoteSearchActivity.class).getValue());
     }
 
     private void whiteNotificationBar(View view) {
