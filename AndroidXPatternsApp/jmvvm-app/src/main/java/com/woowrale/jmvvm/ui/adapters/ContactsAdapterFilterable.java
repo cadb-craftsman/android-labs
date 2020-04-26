@@ -22,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdapterFilterable.MyViewHolder>
+public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdapterFilterable.ContactsAdapterViewHolder>
         implements Filterable {
 
     private Context context;
@@ -30,7 +30,7 @@ public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdap
     private List<Contact> contactListFiltered;
     private ContactsAdapterListener listener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class ContactsAdapterViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.name)
         public TextView name;
@@ -39,12 +39,9 @@ public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdap
         @BindView(R.id.thumbnail)
         public ImageView thumbnail;
 
-        public MyViewHolder(View view) {
+        public ContactsAdapterViewHolder(View view) {
             super(view);
 
-            //name = view.findViewById(R.id.name);
-            //phone = view.findViewById(R.id.phone);
-            //thumbnail = view.findViewById(R.id.thumbnail);
             ButterKnife.bind(this, view);
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +54,6 @@ public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdap
         }
     }
 
-
     public ContactsAdapterFilterable(Context context, List<Contact> contactList, ContactsAdapterListener listener) {
         this.context = context;
         this.listener = listener;
@@ -66,15 +62,14 @@ public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdap
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.contact_row_item, parent, false);
+    public ContactsAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_row_item, parent, false);
 
-        return new MyViewHolder(itemView);
+        return new ContactsAdapterViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(ContactsAdapterViewHolder holder, final int position) {
         final Contact contact = contactListFiltered.get(position);
         holder.name.setText(contact.getName());
         holder.phone.setText(contact.getPhone());
@@ -101,9 +96,6 @@ public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdap
                 } else {
                     List<Contact> filteredList = new ArrayList<>();
                     for (Contact row : contactList) {
-
-                        // name match condition. this might differ depending on your requirement
-                        // here we are looking for name or phone number match
                         if (row.getName().toLowerCase().contains(charString.toLowerCase()) || row.getPhone().contains(charSequence)) {
                             filteredList.add(row);
                         }
@@ -119,7 +111,7 @@ public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdap
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                contactListFiltered = (ArrayList<Contact>) filterResults.values;
+                contactListFiltered = ((ArrayList<Contact>) filterResults.values);
                 notifyDataSetChanged();
             }
         };

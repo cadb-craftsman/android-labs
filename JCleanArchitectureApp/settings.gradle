@@ -1,0 +1,5 @@
+rootProject.name='JCleanArchitectureApp'
+include ':presentation'
+include ':data'
+include ':domain'
+include ':usecases'

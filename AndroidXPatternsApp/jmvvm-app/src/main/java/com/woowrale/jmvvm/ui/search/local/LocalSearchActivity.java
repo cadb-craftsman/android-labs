@@ -75,20 +75,11 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
         disposable.add(RxTextView.textChangeEvents(inputSearch)
                 .skipInitialValue()
                 .debounce(300, TimeUnit.MILLISECONDS)
-                /*.filter(new Predicate<TextViewTextChangeEvent>() {
-                    @Override
-                    public boolean test(TextViewTextChangeEvent textViewTextChangeEvent) throws Exception {
-                        return TextUtils.isEmpty(textViewTextChangeEvent.text().toString()) || textViewTextChangeEvent.text().toString().length() > 2;
-                    }
-                })*/
                 .distinctUntilChanged()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(model.searchContacts(mAdapter).getValue()));
 
-        // source: `gmail` or `linkedin`
-        // fetching all contacts on app launch
-        // only gmail will be fetched
         model.fetchContacts(disposable, "gmail", contactsList, mAdapter);
     }
 

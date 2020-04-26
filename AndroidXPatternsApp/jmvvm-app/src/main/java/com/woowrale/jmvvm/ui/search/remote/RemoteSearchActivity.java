@@ -95,8 +95,6 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
                         })
                         .subscribeWith(observer));
 
-
-        // skipInitialValue() - skip for the first time when EditText empty
         disposable.add(
                 RxTextView.textChangeEvents(inputSearch)
                         .skipInitialValue()
@@ -107,7 +105,6 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
 
         disposable.add(observer);
 
-        // passing empty string fetches all the contacts
         publishSubject.onNext("");
     }
 

@@ -19,7 +19,7 @@ public class SearchViewModel extends ViewModel {
     }
 
     public LiveData<Intent> navigationTo(Context context, Class navigationClass){
-        Intent intent = intent = new Intent(context, navigationClass);
+        Intent intent = new Intent(context, navigationClass);
         navigation.setValue(intent);
         return navigation;
     }

@@ -19,13 +19,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyViewHolder> {
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder> {
 
     private Context context;
     private List<Contact> contactList;
     private ContactsAdapterListener listener;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class ContactsViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.name)
         public TextView name;
@@ -34,7 +34,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
         @BindView(R.id.thumbnail)
         public ImageView thumbnail;
 
-        public MyViewHolder(View view) {
+        public ContactsViewHolder(View view) {
             super(view);
             ButterKnife.bind(this,view);
 
@@ -56,15 +56,15 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.MyView
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.contact_row_item, parent, false);
 
-        return new MyViewHolder(itemView);
+        return new ContactsViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(ContactsViewHolder holder, final int position) {
         final Contact contact = contactList.get(position);
         holder.name.setText(contact.getName());
         holder.phone.setText(contact.getPhone());
