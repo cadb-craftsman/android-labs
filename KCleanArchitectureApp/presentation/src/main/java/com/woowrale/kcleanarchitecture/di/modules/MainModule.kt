@@ -4,8 +4,8 @@ import android.content.Context
 import com.woowrale.data.repository.remote.RemoteContactSource
 import com.woowrale.data.repository.remote.RemoteRepository
 import com.woowrale.kcleanarchitecture.MainApplication
-import com.woowrale.kcleanarchitecture.data.remote.server.GetRemoteContactSource
-import com.woowrale.kcleanarchitecture.data.remote.ws.ApiClient
+import com.woowrale.kcleanarchitecture.data.remote.datasource.GetRemoteContactSource
+import com.woowrale.kcleanarchitecture.data.remote.server.ApiClient
 import com.woowrale.kcleanarchitecture.data.remote.ws.ApiService
 import com.woowrale.kcleanarchitecture.di.threads.JobThread
 import com.woowrale.kcleanarchitecture.di.threads.UIThread
@@ -35,7 +35,9 @@ class MainModule constructor(mApplication: MainApplication) {
     @Provides
     @Singleton
     fun provideRemoteContactSource(apiService: ApiService): RemoteContactSource {
-        return GetRemoteContactSource(apiService)
+        return GetRemoteContactSource(
+            apiService
+        )
     }
 
     @Provides

@@ -17,7 +17,7 @@ class GetContactsUseCase(
     override fun buildUseCaseObservable(params: Params): Single<List<Contact>> {
         return Single.create { emitter: SingleEmitter<List<Contact>> ->
             try {
-                val contacts: List<Contact> = remoteRepository.getContacts(params.apiContacts, params.source, params.query)
+                val contacts: List<Contact> = remoteRepository.getContacts(params.source, params.query)
                 emitter.onSuccess(contacts)
             } catch (exception: Exception) {
                 if (!emitter.isDisposed()) {
@@ -28,7 +28,6 @@ class GetContactsUseCase(
     }
 
     class Params(
-        val apiContacts: String,
         val source: String,
         val query: String
     )

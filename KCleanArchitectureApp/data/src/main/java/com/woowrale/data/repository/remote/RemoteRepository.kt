@@ -4,7 +4,6 @@ import com.woowrale.domain.model.Contact
 
 interface RemoteContactSource {
     fun getContacts(
-        apiContacts: String,
         source: String,
         query: String
     ): List<Contact>
@@ -12,10 +11,9 @@ interface RemoteContactSource {
 
 class RemoteRepository(private val remoteContactSource: RemoteContactSource) {
     fun getContacts(
-        apiContacts: String,
         source: String,
         query: String
     ): List<Contact> {
-        return remoteContactSource.getContacts(apiContacts, source, query)
+        return remoteContactSource.getContacts(source, query)
     }
 }

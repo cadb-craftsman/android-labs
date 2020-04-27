@@ -1,4 +1,4 @@
-package com.woowrale.kcleanarchitecture.data.remote.ws
+package com.woowrale.kcleanarchitecture.data.remote.server
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.woowrale.kcleanarchitecture.BuildConfig
@@ -11,28 +11,26 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-
 class ApiClient {
-    companion object {
-        private const val REQUEST_TIMEOUT = 60
-        private var retrofit: Retrofit? = null
-        private var okHttpClient: OkHttpClient? = null
-    }
 
-    fun getClient(): Retrofit{
-            if (okHttpClient == null) {
-                initOkHttp()
-            }
-            if (retrofit == null) {
-                retrofit = Retrofit.Builder()
-                    .baseUrl(BuildConfig.BASE_URL)
-                    .client(okHttpClient)
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-            }
-            return retrofit!!
+    private val REQUEST_TIMEOUT = 60
+    private var retrofit: Retrofit? = null
+    private var okHttpClient: OkHttpClient? = null
+
+    fun getClient(): Retrofit {
+        if (okHttpClient == null) {
+            initOkHttp()
         }
+        if (retrofit == null) {
+            retrofit = Retrofit.Builder()
+                .baseUrl(BuildConfig.BASE_URL)
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+        return retrofit!!
+    }
 
     private fun initOkHttp() {
         val httpClient = OkHttpClient().newBuilder()

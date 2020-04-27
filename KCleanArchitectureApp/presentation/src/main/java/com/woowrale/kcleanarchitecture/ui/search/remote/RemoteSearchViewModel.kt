@@ -6,27 +6,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent
 import com.woowrale.domain.model.Contact
-import com.woowrale.kcleanarchitecture.BuildConfig
 import com.woowrale.kcleanarchitecture.di.factory.UseCaseFactory
-import com.woowrale.kcleanarchitecture.ui.adapters.ContactsAdapter
 import com.woowrale.kcleanarchitecture.ui.adapters.ContactsAdapterFilterable
-import com.woowrale.kcleanarchitecture.ui.search.local.LocalSearchViewModel
 import com.woowrale.usecase.observers.Observer
 import com.woowrale.usecase.usecases.GetContactsUseCase
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
-import io.reactivex.subjects.PublishSubject
 import java.util.ArrayList
 import javax.inject.Inject
 
 class RemoteSearchViewModel @Inject constructor(useCaseFactory: UseCaseFactory) : ViewModel() {
 
+    private val TAG = RemoteSearchViewModel::class.java.simpleName
+
     private val useCaseFactory: UseCaseFactory = useCaseFactory
     private val textSearch: MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> = MutableLiveData()
-
-    companion object {
-        private val TAG = RemoteSearchViewModel::class.java.simpleName
-    }
 
     fun searchContacts(mAdapter: ContactsAdapterFilterable): LiveData<DisposableObserver<TextViewTextChangeEvent>> {
         textSearch.setValue(object : DisposableObserver<TextViewTextChangeEvent>() {
@@ -53,9 +47,7 @@ class RemoteSearchViewModel @Inject constructor(useCaseFactory: UseCaseFactory) 
         contactsList: List<Contact>,
         mAdapter: ContactsAdapterFilterable
     ) {
-        var contactObserver = ContactObserver(contactsList as ArrayList<Contact>, mAdapter)
-        var params = GetContactsUseCase.Params(BuildConfig.GET_CONTACTS, source, "")
-        disposable.add(useCaseFactory.getContacts().execute(contactObserver, params))
+        disposable.add(useCaseFactory.getContacts().execute(ContactObserver(contactsList as ArrayList<Contact>, mAdapter), GetContactsUseCase.Params(source, "")))
     }
 
     class ContactObserver constructor(
@@ -66,12 +58,12 @@ class RemoteSearchViewModel @Inject constructor(useCaseFactory: UseCaseFactory) 
         private val mAdapter: ContactsAdapterFilterable = adapter
         private val contactList: ArrayList<Contact> = contactsList
 
-        override fun onSuccess(contacts: List<Contact>) {
+        override fun onSuccess(t: List<Contact>) {
             contactList.clear()
-            contactList.addAll(contacts)
+            contactList.addAll(t)
             mAdapter.notifyDataSetChanged()
         }
 
-        override fun onError(exception: Throwable) { }
+        override fun onError(e: Throwable) {}
     }
 }

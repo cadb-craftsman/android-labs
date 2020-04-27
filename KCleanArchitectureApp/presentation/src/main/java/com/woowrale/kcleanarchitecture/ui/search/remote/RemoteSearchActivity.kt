@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.woowrale.domain.model.Contact
 import com.woowrale.kcleanarchitecture.R
-import com.woowrale.kcleanarchitecture.ui.adapters.ContactsAdapter
 import com.woowrale.kcleanarchitecture.ui.adapters.ContactsAdapterFilterable
 import com.woowrale.kcleanarchitecture.ui.base.BaseActivity
 import io.reactivex.android.schedulers.AndroidSchedulers

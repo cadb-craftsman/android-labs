@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent
 import com.woowrale.domain.model.Contact
-import com.woowrale.kcleanarchitecture.BuildConfig
 import com.woowrale.kcleanarchitecture.di.factory.UseCaseFactory
 import com.woowrale.kcleanarchitecture.ui.adapters.ContactsAdapterFilterable
 import com.woowrale.usecase.observers.Observer
@@ -50,7 +49,7 @@ class LocalSearchViewModel @Inject constructor(useCaseFactory: UseCaseFactory) :
         mAdapter: ContactsAdapterFilterable
     ) {
         var contactObserver = ContactObserver(contactsList as ArrayList<Contact>, mAdapter)
-        var params = GetContactsUseCase.Params(BuildConfig.GET_CONTACTS, source, "")
+        var params = GetContactsUseCase.Params(source, "")
         disposable.add(useCaseFactory.getContacts().execute(contactObserver, params))
     }
 
@@ -62,12 +61,12 @@ class LocalSearchViewModel @Inject constructor(useCaseFactory: UseCaseFactory) :
         private val mAdapter: ContactsAdapterFilterable = adapter
         private val contactList: ArrayList<Contact> = contactsList
 
-        override fun onSuccess(contacts: List<Contact>) {
+        override fun onSuccess(t: List<Contact>) {
             contactList.clear()
-            contactList.addAll(contacts)
+            contactList.addAll(t)
             mAdapter.notifyDataSetChanged()
         }
 
-        override fun onError(exception: Throwable) { }
+        override fun onError(e: Throwable) { }
     }
 }
