@@ -23,8 +23,8 @@ public class GetContactsUseCase extends BaseUseCase<List<Contact>, GetContactsUs
     protected Single<List<Contact>> buildUseCaseObservable(final Params params) {
         return Single.create(emitter -> {
             try {
-                List<Contact> movieList = remoteRepository.getContacts(params.getApiContacts(), params.getSource(), params.getQuery());
-                emitter.onSuccess(movieList);
+                List<Contact> contacts = remoteRepository.getContacts(params.getApiContacts(), params.getSource(), params.getQuery());
+                emitter.onSuccess(contacts);
             } catch (Exception exception){
                 if (!emitter.isDisposed()) {
                     emitter.onError(exception);
