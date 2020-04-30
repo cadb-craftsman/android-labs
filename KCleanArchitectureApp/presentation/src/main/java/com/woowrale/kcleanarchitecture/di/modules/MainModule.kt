@@ -16,9 +16,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class MainModule constructor(mApplication: MainApplication) {
-
-    private var mainApplication: MainApplication = mApplication
+class MainModule constructor(private var mainApplication: MainApplication) {
 
     @Provides
     @Singleton
@@ -35,9 +33,7 @@ class MainModule constructor(mApplication: MainApplication) {
     @Provides
     @Singleton
     fun provideRemoteContactSource(apiService: ApiService): RemoteContactSource {
-        return GetRemoteContactSource(
-            apiService
-        )
+        return GetRemoteContactSource(apiService)
     }
 
     @Provides

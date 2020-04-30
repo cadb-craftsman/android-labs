@@ -67,7 +67,7 @@ public class ContactsAdapterFilterable extends RecyclerView.Adapter<ContactsAdap
         holder.phone.setText(contact.getPhone());
 
         Glide.with(context)
-                .load(contact.getProfileImage())
+                .load(contact.getImage())
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.thumbnail);
     }

@@ -3,30 +3,14 @@ package com.woowrale.domain.model;
 public class Contact {
 
     private String name;
-    private String profileImage;
+    private String image;
     private String phone;
     private String email;
 
-    public Contact(String name, String profileImage, String phone, String email) {
+    public Contact(String name, String image, String phone, String email) {
         this.name = name;
-        this.profileImage = profileImage;
+        this.image = image;
         this.phone = phone;
-        this.email = email;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -34,16 +18,31 @@ public class Contact {
         return name;
     }
 
-    public String getProfileImage() {
-        return profileImage;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getPhone() {
         return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
