@@ -30,25 +30,21 @@ class MainModule constructor(private val mApplication: MainApplication) {
     }
 
     @Provides
-    @Singleton
     fun provideContactDataSource(contactDatabase: ContactDatabase): LocalDataSource {
         return ContactDataSource(contactDatabase)
     }
 
     @Provides
-    @Singleton
     fun provideRepository(localDataSource: LocalDataSource): LocalRepository {
         return LocalRepository(localDataSource)
     }
 
     @Provides
-    @Singleton
     fun provideJobScheduler(jobThread: JobThread): JobScheduler {
         return jobThread
     }
 
     @Provides
-    @Singleton
     fun provideUIScheduler(uiThread: UIThread): UIScheduler {
         return uiThread
     }

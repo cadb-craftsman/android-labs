@@ -1,0 +1,3 @@
+rootProject.name='SearchPatternsApp'
+include ':japp'
+include ':kapp'

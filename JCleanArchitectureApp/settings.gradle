@@ -1,5 +1,6 @@
 rootProject.name='JCleanArchitectureApp'
-include ':presentation'
+include ':appdagger'
 include ':data'
 include ':domain'
 include ':usecases'
+include ':appkoin'

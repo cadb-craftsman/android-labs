@@ -39,25 +39,21 @@ public class MainModule {
     }
 
     @Provides
-    @Singleton
     public LocalDataSource provideContactDataSource(ContactDatabase contactDatabase) {
         return new ContactDataSource(contactDatabase);
     }
 
     @Provides
-    @Singleton
     public LocalRepository provideRepository(LocalDataSource localDataSource) {
         return new LocalRepository(localDataSource);
     }
 
     @Provides
-    @Singleton
     public JobScheduler provideJobScheduler(JobThread jobThread){
         return jobThread;
     }
 
     @Provides
-    @Singleton
     public UIScheduler provideUIScheduler(UIThread uiThread){
         return uiThread;
     }
