@@ -5,5 +5,13 @@ import com.woowrale.domain.model.Contact;
 import java.util.List;
 
 public interface LocalContactSource {
-    List<Contact> getContacts(String apiContacts, String source, String query);
+    Boolean isEmpty();
+
+    void saveContacts(List<Contact> contacts);
+
+    List<Contact> getPopularContacts();
+
+    Contact findById(Integer id);
+
+    void update(Contact contact);
 }

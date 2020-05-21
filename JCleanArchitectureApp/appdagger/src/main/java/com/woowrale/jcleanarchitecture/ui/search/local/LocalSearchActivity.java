@@ -1,5 +1,6 @@
 package com.woowrale.jcleanarchitecture.ui.search.local;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import com.woowrale.domain.model.Contact;
 import com.woowrale.jcleanarchitecture.R;
 import com.woowrale.jcleanarchitecture.ui.adapters.ContactsAdapterFilterable;
 import com.woowrale.jcleanarchitecture.ui.base.BaseActivity;
+import com.woowrale.jcleanarchitecture.ui.details.DetailsActivity;
+import com.woowrale.jcleanarchitecture.utils.DataWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +62,10 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        contactsList = DataWrapper.getContactsFromJson(getApplicationContext());
         mAdapter = new ContactsAdapterFilterable(this, contactsList, this);
+
+        model.getLocalContacts(disposable, contactsList, mAdapter);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -74,8 +80,6 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(model.searchContacts(mAdapter).getValue()));
-
-        model.getLocalContacts(disposable,"gmail", contactsList, mAdapter);
     }
 
     protected void initDagger() {
@@ -91,7 +95,7 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
 
     @Override
     public void onContactSelected(Contact contact) {
-
+        startActivity(model.navigationTo(this, DetailsActivity.class).getValue());
     }
 
     @Override

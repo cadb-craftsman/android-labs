@@ -2,9 +2,13 @@ package com.woowrale.jcleanarchitecture.di.modules;
 
 import android.content.Context;
 
+import com.woowrale.data.repository.local.LocalContactSource;
+import com.woowrale.data.repository.local.LocalRepository;
 import com.woowrale.data.repository.remote.RemoteContactSource;
 import com.woowrale.data.repository.remote.RemoteRepository;
 import com.woowrale.jcleanarchitecture.MainApplication;
+import com.woowrale.jcleanarchitecture.data.local.database.ContactDatabase;
+import com.woowrale.jcleanarchitecture.data.local.datasource.GetLocalContactSource;
 import com.woowrale.jcleanarchitecture.di.threads.JobThread;
 import com.woowrale.jcleanarchitecture.data.remote.ws.ApiClient;
 import com.woowrale.jcleanarchitecture.data.remote.ws.ApiService;
@@ -47,8 +51,24 @@ public class MainModule {
 
     @Provides
     @Singleton
-    public RemoteRepository provideRepository(RemoteContactSource remoteContactSource) {
+    public RemoteRepository provideRemoteRepository(RemoteContactSource remoteContactSource) {
         return new RemoteRepository(remoteContactSource);
+    }
+
+    @Provides
+    @Singleton
+    public ContactDatabase provideDataBase(Context context){
+        return ContactDatabase.build(context);
+    }
+
+    @Provides
+    public LocalContactSource provideContactDataSource(ContactDatabase contactDatabase) {
+        return new GetLocalContactSource(contactDatabase);
+    }
+
+    @Provides
+    public LocalRepository provideLocalRepository(LocalContactSource localDataSource) {
+        return new LocalRepository(localDataSource);
     }
 
     @Provides

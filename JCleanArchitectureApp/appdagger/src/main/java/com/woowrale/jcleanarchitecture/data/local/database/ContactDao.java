@@ -1,4 +1,4 @@
-package com.woowrale.jroomapp.data.database;
+package com.woowrale.jcleanarchitecture.data.local.database;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.woowrale.jroomapp.data.model.ContactEntity;
+import com.woowrale.jcleanarchitecture.data.local.model.ContactEntity;
 
 import java.util.List;
 

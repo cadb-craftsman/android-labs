@@ -1,4 +1,4 @@
-package com.woowrale.jroomapp.data.database.model;
+package com.woowrale.jroomapp.data.model;
 
 import androidx.room.Entity;
 import androidx.room.Ignore;

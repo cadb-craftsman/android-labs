@@ -22,14 +22,18 @@
         <activity
             android:name=".ui.search.local.LocalSearchActivity"
             android:label="@string/activity_local_search"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.search.remote.RemoteSearchActivity"
             android:label="@string/activity_remote_search"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.details.DetailsActivity"
+            android:label="@string/activity_details"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
     </application>
-
 
 </manifest>

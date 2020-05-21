@@ -2,6 +2,7 @@ package com.woowrale.jcleanarchitecture.di.components;
 
 import com.woowrale.jcleanarchitecture.di.modules.MainModule;
 import com.woowrale.jcleanarchitecture.ui.base.BaseActivity;
+import com.woowrale.jcleanarchitecture.ui.details.DetailsActivity;
 import com.woowrale.jcleanarchitecture.ui.search.home.SearchActivity;
 import com.woowrale.jcleanarchitecture.ui.search.local.LocalSearchActivity;
 import com.woowrale.jcleanarchitecture.ui.search.remote.RemoteSearchActivity;
@@ -21,5 +22,7 @@ public interface MainComponent {
     void inject(LocalSearchActivity activity);
 
     void inject(RemoteSearchActivity activity);
+
+    void inject(DetailsActivity activity);
 
 }

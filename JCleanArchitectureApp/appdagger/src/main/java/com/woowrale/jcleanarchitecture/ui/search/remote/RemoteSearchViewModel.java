@@ -1,5 +1,7 @@
 package com.woowrale.jcleanarchitecture.ui.search.remote;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -25,11 +27,13 @@ public class RemoteSearchViewModel extends ViewModel {
     private static final String TAG = RemoteSearchViewModel.class.getSimpleName();
 
     private UseCaseFactory useCaseFactory;
+    private MutableLiveData<Intent> navigation;
     private MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> textSearch;
 
     @Inject
     public RemoteSearchViewModel(UseCaseFactory useCaseFactory) {
         this.useCaseFactory = useCaseFactory;
+        navigation = new MutableLiveData<Intent>();
         textSearch = new MutableLiveData<DisposableObserver<TextViewTextChangeEvent>>();
     }
 
@@ -54,8 +58,14 @@ public class RemoteSearchViewModel extends ViewModel {
         return textSearch;
     }
 
+    public LiveData<Intent> navigationTo(Context context, Class navigationClass){
+        Intent intent = new Intent(context, navigationClass);
+        navigation.setValue(intent);
+        return navigation;
+    }
+
     public void getRemoteContacts(CompositeDisposable disposable, String source, List<Contact> contactsList, ContactsAdapterFilterable mAdapter) {
-        disposable.add(useCaseFactory.getContacts().execute(new RemoteSearchViewModel.ContactObserver(contactsList, mAdapter), new GetContactsUseCase.Params(BuildConfig.GET_CONTACTS, source, null)));
+        disposable.add(useCaseFactory.getRemoteContacts().execute(new RemoteSearchViewModel.ContactObserver(contactsList, mAdapter), new GetContactsUseCase.Params(BuildConfig.GET_CONTACTS, source, null)));
     }
 
     private final class ContactObserver extends Observer<List<Contact>> {

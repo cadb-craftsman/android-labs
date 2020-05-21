@@ -1,5 +1,7 @@
 package com.woowrale.jcleanarchitecture.ui.search.local;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -8,11 +10,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 import com.woowrale.domain.model.Contact;
-import com.woowrale.jcleanarchitecture.BuildConfig;
 import com.woowrale.jcleanarchitecture.di.factory.UseCaseFactory;
 import com.woowrale.jcleanarchitecture.ui.adapters.ContactsAdapterFilterable;
 import com.woowrale.usecase.observers.Observer;
-import com.woowrale.usecase.usescases.GetContactsUseCase;
+import com.woowrale.usecase.usescases.GetContactAllUseCase;
 
 import java.util.List;
 
@@ -26,12 +27,20 @@ public class LocalSearchViewModel extends ViewModel {
     private static final String TAG = LocalSearchViewModel.class.getSimpleName();
 
     private UseCaseFactory useCaseFactory;
+    private MutableLiveData<Intent> navigation;
     private MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> textSearch;
 
     @Inject
     public LocalSearchViewModel(UseCaseFactory useCaseFactory) {
         this.useCaseFactory = useCaseFactory;
+        navigation = new MutableLiveData<Intent>();
         textSearch = new MutableLiveData<DisposableObserver<TextViewTextChangeEvent>>();
+    }
+
+    public LiveData<Intent> navigationTo(Context context, Class navigationClass){
+        Intent intent = new Intent(context, navigationClass);
+        navigation.setValue(intent);
+        return navigation;
     }
 
     public LiveData<DisposableObserver<TextViewTextChangeEvent>> searchContacts(ContactsAdapterFilterable mAdapter) {
@@ -55,8 +64,8 @@ public class LocalSearchViewModel extends ViewModel {
         return textSearch;
     }
 
-    public void getLocalContacts(CompositeDisposable disposable, String source, List<Contact> contactsList, ContactsAdapterFilterable mAdapter) {
-        disposable.add(useCaseFactory.getContacts().execute(new ContactObserver(contactsList, mAdapter), new GetContactsUseCase.Params(BuildConfig.GET_CONTACTS, source, null)));
+    public void getLocalContacts(CompositeDisposable disposable, List<Contact> contactsList, ContactsAdapterFilterable mAdapter) {
+        disposable.add(useCaseFactory.getLocalContacts().execute(new ContactObserver(contactsList, mAdapter), new GetContactAllUseCase.Params(contactsList)));
     }
 
     private final class ContactObserver extends Observer<List<Contact>> {

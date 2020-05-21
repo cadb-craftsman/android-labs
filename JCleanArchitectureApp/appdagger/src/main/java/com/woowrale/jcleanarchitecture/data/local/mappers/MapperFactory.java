@@ -1,7 +1,7 @@
-package com.woowrale.jroomapp.data.mappers;
+package com.woowrale.jcleanarchitecture.data.local.mappers;
 
-import com.woowrale.jroomapp.data.model.ContactEntity;
-import com.woowrale.jroomapp.domain.model.Contact;
+import com.woowrale.domain.model.Contact;
+import com.woowrale.jcleanarchitecture.data.local.model.ContactEntity;
 
 import java.util.ArrayList;
 import java.util.List;
