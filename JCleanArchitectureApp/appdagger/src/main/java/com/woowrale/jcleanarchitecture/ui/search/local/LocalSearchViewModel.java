@@ -12,6 +12,7 @@ import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 import com.woowrale.domain.model.Contact;
 import com.woowrale.jcleanarchitecture.di.factory.UseCaseFactory;
 import com.woowrale.jcleanarchitecture.ui.adapters.ContactsAdapterFilterable;
+import com.woowrale.jcleanarchitecture.ui.model.ContactUI;
 import com.woowrale.usecase.observers.Observer;
 import com.woowrale.usecase.usescases.GetContactAllUseCase;
 
@@ -37,8 +38,10 @@ public class LocalSearchViewModel extends ViewModel {
         textSearch = new MutableLiveData<DisposableObserver<TextViewTextChangeEvent>>();
     }
 
-    public LiveData<Intent> navigationTo(Context context, Class navigationClass){
+    public LiveData<Intent> navigationTo(Context context, Class navigationClass, ContactUI contact){
+
         Intent intent = new Intent(context, navigationClass);
+        intent.putExtra("contact", contact);
         navigation.setValue(intent);
         return navigation;
     }

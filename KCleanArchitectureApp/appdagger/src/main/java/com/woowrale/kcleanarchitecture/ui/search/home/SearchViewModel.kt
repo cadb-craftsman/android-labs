@@ -12,7 +12,7 @@ class SearchViewModel @Inject constructor() : ViewModel() {
 
     fun navigationTo(context: Context, navigationClass: Class<*>): LiveData<Intent> {
         val intent: Intent = Intent(context, navigationClass)
-        navigation.setValue(intent)
+        navigation.value = intent
         return navigation
     }
 }

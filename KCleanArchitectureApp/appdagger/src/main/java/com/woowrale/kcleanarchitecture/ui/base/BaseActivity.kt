@@ -13,8 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected fun getDaggerMainComponent(): MainComponent {
-        val mainApplication = MainApplication()
-        mainApplication.onCreate()
+        val mainApplication: MainApplication = application as MainApplication
         return mainApplication.mainComponent
     }
 

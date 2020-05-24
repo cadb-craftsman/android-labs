@@ -1,5 +1,7 @@
 package com.woowrale.kcleanarchitecture.ui.search.local
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +10,9 @@ import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent
 import com.woowrale.domain.model.Contact
 import com.woowrale.kcleanarchitecture.di.factory.UseCaseFactory
 import com.woowrale.kcleanarchitecture.ui.adapters.ContactsAdapterFilterable
+import com.woowrale.kcleanarchitecture.ui.model.ContactUI
 import com.woowrale.usecase.observers.Observer
+import com.woowrale.usecase.usecases.GetContactAllUseCase
 import com.woowrale.usecase.usecases.GetContactsUseCase
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
@@ -18,7 +22,15 @@ import javax.inject.Inject
 class LocalSearchViewModel @Inject constructor(private val useCaseFactory: UseCaseFactory) : ViewModel() {
 
     private val TAG = LocalSearchViewModel::class.java.simpleName
+    private var navigation: MutableLiveData<Intent> = MutableLiveData()
     private val textSearch: MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> = MutableLiveData()
+
+    fun navigationTo(context: Context, navigationClass: Class<*>, contactUI: ContactUI): LiveData<Intent> {
+        val intent: Intent = Intent(context, navigationClass)
+        intent.putExtra("contact", contactUI)
+        navigation.value = intent
+        return navigation
+    }
 
     fun searchContacts(mAdapter: ContactsAdapterFilterable): LiveData<DisposableObserver<TextViewTextChangeEvent>> {
         textSearch.setValue(object : DisposableObserver<TextViewTextChangeEvent>() {
@@ -39,15 +51,14 @@ class LocalSearchViewModel @Inject constructor(private val useCaseFactory: UseCa
         return textSearch
     }
 
-    fun getLocalContacts(
+    fun getContacts(
         disposable: CompositeDisposable,
-        source: String,
-        contactsList: List<Contact>,
+        contacts: List<Contact>,
         mAdapter: ContactsAdapterFilterable
     ) {
-        var contactObserver = ContactObserver(contactsList as ArrayList<Contact>, mAdapter)
-        var params = GetContactsUseCase.Params(source, "")
-        disposable.add(useCaseFactory.getContacts().execute(contactObserver, params))
+        var contactObserver = ContactObserver(contacts as ArrayList<Contact>, mAdapter)
+        var params = GetContactAllUseCase.Params(contacts)
+        disposable.add(useCaseFactory.getLocalContacts().execute(contactObserver, params))
     }
 
     class ContactObserver constructor(

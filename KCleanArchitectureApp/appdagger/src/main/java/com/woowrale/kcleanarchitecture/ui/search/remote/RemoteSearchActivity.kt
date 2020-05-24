@@ -10,6 +10,8 @@ import com.woowrale.domain.model.Contact
 import com.woowrale.kcleanarchitecture.R
 import com.woowrale.kcleanarchitecture.ui.adapters.ContactsAdapterFilterable
 import com.woowrale.kcleanarchitecture.ui.base.BaseActivity
+import com.woowrale.kcleanarchitecture.ui.details.DetailsActivity
+import com.woowrale.kcleanarchitecture.ui.model.ContactUI
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -25,7 +27,7 @@ class RemoteSearchActivity : BaseActivity(), ContactsAdapterFilterable.ContactsA
     lateinit var model: RemoteSearchViewModel
 
     private val disposable = CompositeDisposable()
-    private val contactsList = ArrayList<Contact>()
+    private val contacts = ArrayList<Contact>()
 
     private lateinit var mAdapter: ContactsAdapterFilterable
 
@@ -36,9 +38,9 @@ class RemoteSearchActivity : BaseActivity(), ContactsAdapterFilterable.ContactsA
         setContentView(R.layout.activity_local_search)
 
         setSupportActionBar(toolbar)
-        if (getSupportActionBar() != null) getSupportActionBar()?.setDisplayHomeAsUpEnabled(true) else throw NullPointerException("Expression 'getSupportActionBar()' must not be null")
+        getSupportActionBar()!!.setDisplayHomeAsUpEnabled(true)
 
-        mAdapter = ContactsAdapterFilterable(this, contactsList, this)
+        mAdapter = ContactsAdapterFilterable(this, contacts, this)
 
         val mLayoutManager = LinearLayoutManager(getApplicationContext())
         recyclerView.layoutManager = mLayoutManager
@@ -56,7 +58,7 @@ class RemoteSearchActivity : BaseActivity(), ContactsAdapterFilterable.ContactsA
                 .subscribeWith(model.searchContacts(mAdapter).value!!)
         )
 
-        model.getLocalContacts(disposable,"gmail", contactsList, mAdapter)
+        model.getContacts(disposable, contacts, mAdapter)
 
     }
 
@@ -65,7 +67,7 @@ class RemoteSearchActivity : BaseActivity(), ContactsAdapterFilterable.ContactsA
     }
 
     override fun onContactSelected(contact: Contact) {
-
+        startActivity(model.navigationTo(this, DetailsActivity::class.java, ContactUI(contact.name, contact.image, contact.phone, contact.email)).value)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

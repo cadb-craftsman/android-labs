@@ -16,6 +16,7 @@ import com.woowrale.jcleanarchitecture.R;
 import com.woowrale.jcleanarchitecture.ui.adapters.ContactsAdapterFilterable;
 import com.woowrale.jcleanarchitecture.ui.base.BaseActivity;
 import com.woowrale.jcleanarchitecture.ui.details.DetailsActivity;
+import com.woowrale.jcleanarchitecture.ui.model.ContactUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +93,8 @@ public class RemoteSearchActivity extends BaseActivity implements ContactsAdapte
 
     @Override
     public void onContactSelected(Contact contact) {
-        startActivity(model.navigationTo(this, DetailsActivity.class).getValue());
+        ContactUI c = new ContactUI(contact.getName(), contact.getImage(), contact.getPhone(), contact.getEmail());
+        startActivity(model.navigationTo(this, DetailsActivity.class, c).getValue());
     }
 
     @Override

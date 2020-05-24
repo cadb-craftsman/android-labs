@@ -40,7 +40,7 @@ class ContactsAdapterFilterable(
         holder.phone.setText(contact.phone)
 
         Glide.with(context)
-            .load(contact.profileImage)
+            .load(contact.image)
             .apply(RequestOptions.circleCropTransform())
             .into(holder.thumbnail)
     }

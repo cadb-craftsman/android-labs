@@ -1,6 +1,5 @@
 package com.woowrale.jcleanarchitecture.ui.search.local;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -17,6 +16,7 @@ import com.woowrale.jcleanarchitecture.R;
 import com.woowrale.jcleanarchitecture.ui.adapters.ContactsAdapterFilterable;
 import com.woowrale.jcleanarchitecture.ui.base.BaseActivity;
 import com.woowrale.jcleanarchitecture.ui.details.DetailsActivity;
+import com.woowrale.jcleanarchitecture.ui.model.ContactUI;
 import com.woowrale.jcleanarchitecture.utils.DataWrapper;
 
 import java.util.ArrayList;
@@ -95,7 +95,8 @@ public class LocalSearchActivity extends BaseActivity implements ContactsAdapter
 
     @Override
     public void onContactSelected(Contact contact) {
-        startActivity(model.navigationTo(this, DetailsActivity.class).getValue());
+        ContactUI c = new ContactUI(contact.getName(), contact.getImage(), contact.getPhone(), contact.getEmail());
+        startActivity(model.navigationTo(this, DetailsActivity.class, c).getValue());
     }
 
     @Override

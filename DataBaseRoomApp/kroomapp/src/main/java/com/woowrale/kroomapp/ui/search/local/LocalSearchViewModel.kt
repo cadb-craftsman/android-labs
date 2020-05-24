@@ -12,11 +12,10 @@ import com.woowrale.kroomapp.usecases.ContactAllUseCase
 import com.woowrale.kroomapp.usecases.observers.Observer
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
-import java.util.ArrayList
+import java.util.*
 import javax.inject.Inject
 
-class LocalSearchViewModel @Inject constructor(useCaseFactory: UseCaseFactory) : ViewModel() {
-    private val useCaseFactory: UseCaseFactory = useCaseFactory
+class LocalSearchViewModel @Inject constructor(private val useCaseFactory: UseCaseFactory) : ViewModel() {
     private val textSearch: MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> = MutableLiveData()
 
     companion object {

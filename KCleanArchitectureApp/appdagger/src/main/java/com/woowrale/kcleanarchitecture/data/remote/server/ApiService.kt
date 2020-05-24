@@ -1,4 +1,4 @@
-package com.woowrale.kcleanarchitecture.data.remote.ws
+package com.woowrale.kcleanarchitecture.data.remote.server
 
 import com.woowrale.kcleanarchitecture.data.remote.model.response.ContactResponse
 

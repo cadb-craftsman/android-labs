@@ -3,7 +3,7 @@ package com.woowrale.kcleanarchitecture.data.remote.datasource
 import com.woowrale.data.repository.remote.RemoteContactSource
 import com.woowrale.domain.model.Contact
 import com.woowrale.kcleanarchitecture.BuildConfig
-import com.woowrale.kcleanarchitecture.data.mappers.DataMappers
+import com.woowrale.kcleanarchitecture.data.remote.mappers.DataMappers
 import com.woowrale.kcleanarchitecture.data.remote.ws.ApiService
 import java.io.IOException
 

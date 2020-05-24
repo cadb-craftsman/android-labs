@@ -6,7 +6,7 @@ data class ContactResponse(
     @SerializedName("name")
     var name: String,
     @SerializedName("image")
-    var profileImage: String,
+    var image: String,
     @SerializedName("phone")
     var phone: String,
     @SerializedName("email")

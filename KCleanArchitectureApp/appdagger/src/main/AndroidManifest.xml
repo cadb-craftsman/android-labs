@@ -29,6 +29,11 @@
             android:label="@string/activity_remote_search"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.details.DetailsActivity"
+            android:label="@string/activity_details"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
