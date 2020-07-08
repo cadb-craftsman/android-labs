@@ -1,0 +1,3 @@
+include ':kapp'
+include ':japp'
+rootProject.name = "ComponentNavApp"
